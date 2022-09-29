@@ -17,18 +17,19 @@ pipeline{
         sh "mvn clean package"
       }
     }
-    /*
     stage('4CodeQuality'){
       steps{
         sh "echo 'Perfoming CodeQualityAnalysis' "
         sh "mvn sonar:sonar"
       }
     }
+    /*
     stage('5uploadNexus'){
       steps{
         sh "mvn deploy"
       }
     } 
+    */
     stage('8deploy2prod'){
       steps{
         deploy adapters: [tomcat8(credentialsId: 'tomcatcredentials', path: '', url: 'http://3.87.145.20:8080/')], contextPath: null, war: 'target/*war'
@@ -67,6 +68,5 @@ Olusegun (SG)
 Senior Lead Dev Eng''', subject: 'App Deployed', to: 'segundaremail@gmail.com, dareesgee@gmail.com'
     }
   } 
-  */
 }
 }
