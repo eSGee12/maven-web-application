@@ -17,13 +17,13 @@ pipeline{
         sh "mvn clean package"
       }
     }
+        /*
     stage('4CodeQuality'){
       steps{
         sh "echo 'Perfoming CodeQualityAnalysis' "
         sh "mvn sonar:sonar"
       }
     }
-    /*
     stage('5uploadNexus'){
       steps{
         sh "mvn deploy"
