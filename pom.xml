@@ -102,7 +102,7 @@
 	    <snapshotRepository>
 	      <id>nexus</id>
 	      <name>eSGee12 Snapshot Nexus Repository </name>
-	      <url>http://34.238.44.186:4000/repository/myapp-snapshot/</url>
+	      <url>http://172.31.80.21:4000/repository/myapp-snapshot/</url>
 	    </snapshotRepository>
 	    
 	</distributionManagement>
