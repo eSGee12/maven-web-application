@@ -1,0 +1,64 @@
+ipeline{
+	agent any
+	tools{
+		maven "maven_home"
+	}
+	stages{
+		stage('GitClone'){
+			steps{
+				git "https://github.com/eSGee12/maven-web-application.git"
+			}
+		}
+		stage('Test&Build'){
+			steps{
+				sh "mvn clean package"
+			}
+		}
+		stage('CodeQuality'){
+			steps{
+				sh "mvn sonar:sonar"
+			}
+		}
+		stage('UploadArtifact'){
+			steps{
+				sh "mvn deploy"
+			}
+		}
+		stage('message'){
+			steps{
+				sh "echo CI job successful"
+			}
+		}
+		stage('predeployment'){
+			steps{
+				sh "docker build -t joyorji/ebay-app ."	
+				sh "docker push joyorji/ebay-app"	
+			}
+		}
+	}
+}
+
+Continunous deployment:
+pipeline{
+	agent any
+	stages{
+		stage('Undeployment'){
+			steps{
+				sh "echo Undeploying existing application"
+				sh "docker rm -f myapp"
+			}
+		}
+		stage('deployment'){
+			steps{
+				sh "echo application ready for deployment"
+				sh "docker run --name myapp -d -p 2000:8080 joyorji/ebay-app"
+			}
+		}
+
+		stage('EmailNotification'){
+			steps{
+				sh "echo deployment successful"
+			}
+		}
+	}
+}
