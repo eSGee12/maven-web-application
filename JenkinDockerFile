@@ -1,4 +1,5 @@
-ipeline{
+#edit to your own file, this is joy scripts
+Pipeline{
 	agent any
 	tools{
 		maven "maven_home"
